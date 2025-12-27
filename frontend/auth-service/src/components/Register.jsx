@@ -20,16 +20,23 @@ const Register = () => {
     }
   };
 
+  // ... same logic
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-100">
-      <div className="bg-white/95 backdrop-blur rounded-2xl shadow-2xl p-10 w-full max-w-md">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-purple-700 via-pink-600 to-indigo-700">
+      <div className="floating-orb from-purple-500 to-indigo-600 w-96 h-96 -top-32 -left-32" />
+      <div className="floating-orb from-pink-500 to-purple-600 w-80 h-80 bottom-0 right-0" />
+      <div className="floating-orb from-indigo-500 to-pink-600 w-96 h-96 top-1/3 right-1/4" />
+
+      <div className="glass-card p-12 w-full max-w-md relative z-10">
+        <h2 className="text-4xl font-bold text-center text-white mb-10 drop-shadow-lg">
           Create Account
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Same input-field and btn-primary classes as Login */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-white/90 font-medium mb-2">
               Email
             </label>
             <input
@@ -41,9 +48,8 @@ const Register = () => {
               required
             />
           </div>
-
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-white/90 font-medium mb-2">
               Password
             </label>
             <input
@@ -51,31 +57,28 @@ const Register = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="input-field"
-              placeholder="Choose a strong password"
+              placeholder="Choose strong password"
               required
             />
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+            <div className="bg-red-500/20 border border-red-400/50 text-red-200 px-4 py-3 rounded-xl text-sm">
               {error}
             </div>
           )}
 
           <button
             type="submit"
-            className="btn-primary bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+            className="btn-primary from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
           >
             Create Account
           </button>
         </form>
 
-        <p className="text-center mt-8 text-gray-600">
+        <p className="text-center mt-8 text-white/80">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-purple-600 font-semibold hover:underline"
-          >
+          <Link to="/login" className="text-white font-bold hover:underline">
             Sign in
           </Link>
         </p>
