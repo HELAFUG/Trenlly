@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
         is_superuser: "false",
         is_verified: "false",
       });
-      const url = `http://localhost:8000/api/auth/login?${params.toString()}`;
+      const url = `http://localhost:8000/trenlly/auth/login?${params.toString()}`;
 
       const response = await axios.post(
         url,
@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
         is_superuser: "false",
         is_verified: "false",
       });
-      const url = `http://localhost:8000/api/auth/register?${params.toString()}`;
+      const url = `http://localhost:8000/trenlly/auth/register?${params.toString()}`;
 
       await axios.post(
         url,
