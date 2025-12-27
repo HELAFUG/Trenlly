@@ -12,7 +12,7 @@ from core.models.mixins import IDIntPKMixin
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
 
-    from core.models import AccessToken
+    from .access_token import AccessToken
 
 
 class SQLAlchemyBaseUserTable(SQLAlchemyBaseUserTableGeneric[int]):
