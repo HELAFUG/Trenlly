@@ -25,7 +25,7 @@ class APIConfig(BaseModel):
 
     @property
     def token_url(self) -> str:
-        return f"{self.prefix}{self.auth}/token"
+        return f"{self.prefix}{self.auth}/login"
 
 
 class SRVConfig(BaseModel):
