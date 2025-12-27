@@ -33,10 +33,17 @@ class SRVConfig(BaseModel):
     port: int = 8010
 
 
+class AccessToken(BaseModel):
+    reset_password_token_secret: str = getenv("RESET_PASSWORD_TOKEN_SECRET", "secret")
+    verification_token_secret: str = getenv("VERIFICATION_TOKEN_SECRET", "secret")
+    lifetime: int = 3600
+
+
 class Settings(BaseSettings):
     db: DBConfig = DBConfig()
     api: APIConfig = APIConfig()
     srv: SRVConfig = SRVConfig()
+    access_token: AccessToken = AccessToken()
 
 
 settings = Settings()
