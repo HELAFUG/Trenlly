@@ -8,7 +8,7 @@ load_dotenv()
 
 
 class DBConfig(BaseModel):
-    url: str = getenv("DATABASE_URL", "sqlite:///db.sqlite")
+    url: str = getenv("DB_URL", "sqlite:///db.sqlite")
     echo: bool = False
     naming_convention: dict[str, str] = {
         "ix": "ix_%(column_0_label)s",

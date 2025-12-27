@@ -7,12 +7,12 @@ from fastapi_users_db_sqlalchemy.access_token import (
 from sqlalchemy import ForeignKey, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from core.models import Base
+from .base import Base
 
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
 
-    from core.models import User
+    from .user import User
 
 
 class AccessToken(Base, SQLAlchemyBaseAccessTokenTable):
