@@ -5,26 +5,28 @@ const Home = () => {
   const { logout } = useContext(AuthContext);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
-      <div className="bg-white rounded-3xl shadow-2xl p-16 max-w-2xl w-full text-center">
-        <div className="mb-10">
-          <div className="w-32 h-32 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full mx-auto flex items-center justify-center text-white text-6xl font-bold shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-700">
+      <div className="floating-orb from-emerald-400 to-cyan-400 w-96 h-96 -top-48 left-1/4" />
+      <div className="floating-orb from-teal-400 to-emerald-500 w-80 h-80 bottom-20 right-1/3" />
+
+      <div className="glass-card p-20 max-w-2xl w-full text-center relative z-10">
+        <div className="mb-12">
+          <div className="w-40 h-40 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-full mx-auto flex items-center justify-center text-white text-8xl font-bold shadow-2xl animate-bounce">
             ✓
           </div>
         </div>
 
-        <h1 className="text-5xl font-bold text-gray-800 mb-6">
-          You're Logged In!
+        <h1 className="text-6xl font-bold text-white mb-8 drop-shadow-2xl">
+          Success! You're In!
         </h1>
 
-        <p className="text-xl text-gray-600 mb-12">
-          Welcome to your beautiful modern dashboard. Enjoy the smooth
-          experience.
+        <p className="text-2xl text-white/90 mb-16">
+          Enjoy the premium modern experience.
         </p>
 
         <button
           onClick={logout}
-          className="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-4 px-10 rounded-xl transition-all transform hover:scale-105 shadow-xl"
+          className="bg-white/20 backdrop-blur-lg text-white font-bold py-5 px-12 rounded-2xl border border-white/30 hover:bg-white/30 transition-all transform hover:scale-110 shadow-xl"
         >
           Logout
         </button>
