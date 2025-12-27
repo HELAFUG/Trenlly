@@ -1,4 +1,3 @@
-// src/context/AuthContext.js
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -19,7 +18,6 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      // Construct URL with query params as per curl example
       const params = new URLSearchParams({
         email,
         password,
@@ -27,19 +25,14 @@ export const AuthProvider = ({ children }) => {
         is_superuser: "false",
         is_verified: "false",
       });
-      const url = `http://localhost:8000/trenlly/auth/login?${params.toString()}`;
 
       const response = await axios.post(
-        url,
+        `http://localhost:8000/api/auth/login?${params.toString()}`,
         {},
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        },
+        { headers: { Accept: "application/json" } },
       );
 
-      const { access_token } = response.data; // Assuming response has { access_token: '...' }
+      const access_token = response.data.access_token || response.data.token;
       setToken(access_token);
       localStorage.setItem("token", access_token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
@@ -52,7 +45,6 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (email, password) => {
     try {
-      // Construct URL with query params as per curl example
       const params = new URLSearchParams({
         email,
         password,
@@ -60,21 +52,15 @@ export const AuthProvider = ({ children }) => {
         is_superuser: "false",
         is_verified: "false",
       });
-      const url = `http://localhost:8000/trenlly/auth/register?${params.toString()}`;
 
       await axios.post(
-        url,
+        `http://localhost:8000/api/auth/register?${params.toString()}`,
         {},
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        },
+        { headers: { Accept: "application/json" } },
       );
-
       return true;
     } catch (error) {
-      console.error("Registration failed:", error);
+      console.error("Register failed:", error);
       return false;
     }
   };
