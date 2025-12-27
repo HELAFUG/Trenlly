@@ -1,4 +1,3 @@
-from mmap import ACCESS_COPY
 from typing import TYPE_CHECKING
 
 from fastapi_users_db_sqlalchemy import (
