@@ -1,4 +1,6 @@
-__all__ = ["get_access_tokens", "get_users"]
+__all__ = ["get_access_tokens", "get_users", "get_strategy"]
+
+from auth.strategy import get_strategy
 
 from .auth.access_tokens import get_access_tokens
 from .auth.users import get_users
