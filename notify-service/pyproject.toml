@@ -13,7 +13,8 @@ dependencies = [
     "faststream[cli] (>=0.6.5,<0.7.0)",
     "pydantic-settings (>=2.12.0,<3.0.0)",
     "black (>=25.12.0,<26.0.0)",
-    "aiosmtplib (>=5.0.0,<6.0.0)"
+    "aiosmtplib (>=5.0.0,<6.0.0)",
+    "aiokafka (>=0.12.0,<0.13.0)"
 ]
 
 
