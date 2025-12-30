@@ -2,6 +2,7 @@ import logging
 
 from fastapi import Request
 from fastapi_users import BaseUserManager
+from service.kafka import after_user_registered
 
 from core.config import settings
 from core.models import User
@@ -18,3 +19,4 @@ class UserManager(IDIntPKMixin, BaseUserManager[User, int]):
         self, user: User, request: Request | None = None
     ) -> None:
         log.info("User signed up %s", user.id)
+        await after_user_registered(user.email)
