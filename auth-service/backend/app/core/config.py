@@ -39,11 +39,17 @@ class AccessToken(BaseModel):
     lifetime: int = 3600
 
 
+class BrokerConfig(BaseModel):
+    bootstrap_servers: str = "localhost:9092"
+    after_register_topic: str = "after_register"
+
+
 class Settings(BaseSettings):
     db: DBConfig = DBConfig()
     api: APIConfig = APIConfig()
     srv: SRVConfig = SRVConfig()
     access_token: AccessToken = AccessToken()
+    broker: BrokerConfig = BrokerConfig()
 
 
 settings = Settings()
