@@ -1,3 +1,4 @@
+import logging
 from contextlib import asynccontextmanager
 
 import uvicorn
@@ -20,6 +21,7 @@ app = FastAPI(lifespan=lifespan)
 app.include_router(api_router)
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     uvicorn.run(
         "main:app",
         host=settings.srv.host,
