@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 
 import uvicorn
 from api import api_router
+from core import fs_broker
 from core.config import settings
 from core.models import db_helper
 from fastapi import FastAPI
@@ -9,7 +10,9 @@ from fastapi import FastAPI
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    await fs_broker.start()
     yield
+    await fs_broker.stop()
     await db_helper.dispose()
 
 
