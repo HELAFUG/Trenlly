@@ -7,6 +7,7 @@ load_dotenv()
 
 class BrokerConfig(BaseModel):
     bootstrap_servers: str = "localhost:9092"
+    after_register_topic: str = "after_register"
 
 
 class Settings(BaseSettings):
