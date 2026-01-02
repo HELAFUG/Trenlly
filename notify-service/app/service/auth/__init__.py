@@ -1,2 +1,3 @@
-__all__ = ["after_register"]
-from .register import after_register
+__all__ = ["auth_router"]
+
+from .register import auth_router

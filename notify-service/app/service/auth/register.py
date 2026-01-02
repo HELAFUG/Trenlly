@@ -1,8 +1,10 @@
-from core import fs_broker
 from core.config import settings
+from faststream.kafka import KafkaRouter
+
+auth_router = KafkaRouter()
 
 
-@fs_broker.subscriber(settings.broker.after_register_topic)
+@auth_router.subscriber(settings.broker.after_register_topic)
 async def after_register(message: dict):
     email = message.get("email")
     print(f"User {email} registered")
