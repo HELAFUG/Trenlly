@@ -1,10 +1,15 @@
+from sqlalchemy import MetaData
 from sqlalchemy.orm import DeclarativeBase, Mapped, declared_attr, mapped_column
 from utils.case_converter import camel_case_to_snake_case
+
+from core.config import settings
 
 
 class Base(DeclarativeBase):
     __abstract__ = True
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
+
+    metadata = MetaData(naming_convention=settings.db.naming_convention)
 
     @declared_attr.directive
     def __tablename__(cls) -> str:
