@@ -36,11 +36,17 @@ class LoggingConfig(BaseModel):
     datefmt: str = "%Y-%m-%d %H:%M:%S"
 
 
+class FastStreamBrokerConfig(BaseModel):
+    bootstrap_servers: str = "localhost:9092"
+    check_user_exists_topic: str = "check_user_exists"
+
+
 class Settings(BaseSettings):
     api: APIConfig = APIConfig()
     srv: SRVConfig = SRVConfig()
     db: DBConfig = DBConfig()
     logging: LoggingConfig = LoggingConfig()
+    faststream_broker: FastStreamBrokerConfig = FastStreamBrokerConfig()
 
 
 settings = Settings()
