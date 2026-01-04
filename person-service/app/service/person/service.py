@@ -1,10 +1,21 @@
-from core.schemas.person import PersonCreate,Person
+from typing import Optional
+
+from core.models import Person
+from core.schemas.person import Person as PersonSchema
+from core.schemas.person import PersonCreate
 from repository.person import create_person
-from service.kafka import check_user_exists
-from core import fs_broker
-from core.config import settings
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from service.external.auth_service import proxy_auth_login
 
 
-async def create_person_service(person: PersonCreate):
-    pass
-    
+async def create_person_service(
+    session: AsyncSession, person_data: PersonCreate
+) -> Optional[Person]:
+    user_exist = await proxy_auth_login(person_data)
+    if user_exist:
+        new_person = Person(**person_data.model_dump())
+        await create_person(session, new_person)
+        return new_person
+
+    return None

@@ -1,9 +1,11 @@
+from typing import Optional
+
 from aiohttp import ClientSession, FormData
 from core.config import settings
 from core.schemas.person import PersonCreate
 
 
-async def proxy_auth_login(person: PersonCreate):
+async def proxy_auth_login(person: PersonCreate) -> Optional[dict]:
     form_data = FormData()
     form_data.add_field("grant_type", "password")
     form_data.add_field("username", person.email)
@@ -21,4 +23,7 @@ async def proxy_auth_login(person: PersonCreate):
             },
         ) as response:
             response.raise_for_status()
-            return await response.json()
+            if response.status == 200:
+                return await response.json()
+            else:
+                return None
