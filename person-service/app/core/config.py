@@ -38,7 +38,8 @@ class LoggingConfig(BaseModel):
 
 class FastStreamBrokerConfig(BaseModel):
     bootstrap_servers: str = "localhost:9092"
-    check_user_exists_topic: str = "check_user_exists"
+    check_user_exists_input_topic: str = "check_user_exists"
+    check_user_exists_output_topic: str = "check_user_exists_response"
 
 
 class Settings(BaseSettings):
