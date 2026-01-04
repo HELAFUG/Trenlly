@@ -42,12 +42,25 @@ class FastStreamBrokerConfig(BaseModel):
     check_user_exists_output_topic: str = "check_user_exists_response"
 
 
+class AuthServiceConfig(BaseModel):
+    url: str = "http://localhost:8010"
+
+    @property
+    def login_url(self) -> str:
+        return f"{self.url}api/auth/login"
+
+
+class ExternalServiceConfig(BaseModel):
+    auth_service: AuthServiceConfig = AuthServiceConfig()
+
+
 class Settings(BaseSettings):
     api: APIConfig = APIConfig()
     srv: SRVConfig = SRVConfig()
     db: DBConfig = DBConfig()
     logging: LoggingConfig = LoggingConfig()
     faststream_broker: FastStreamBrokerConfig = FastStreamBrokerConfig()
+    external_service: ExternalServiceConfig = ExternalServiceConfig()
 
 
 settings = Settings()
