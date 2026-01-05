@@ -43,7 +43,7 @@ class FastStreamBrokerConfig(BaseModel):
 
 
 class AuthServiceConfig(BaseModel):
-    url: str = "http://localhost:8010"
+    url: str = "http://localhost:8010/"
 
     @property
     def login_url(self) -> str:
