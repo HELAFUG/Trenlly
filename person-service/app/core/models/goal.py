@@ -18,7 +18,5 @@ class Goal(Base):
     name: Mapped[str] = mapped_column(index=True)
     description: Mapped[str]
     deadline_day: Mapped[datetime.date]
-    created_at: Mapped[datetime.datetime] = mapped_column(
-        default=datetime.datetime.utcnow()
-    )
-    completed_at: Mapped[datetime.datetime | None] = mapped_column(default=None)
+    created_at: Mapped[datetime.date] = mapped_column(default=datetime.date.today())
+    completed_at: Mapped[datetime.date | None] = mapped_column(default=None)

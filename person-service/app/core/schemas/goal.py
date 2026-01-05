@@ -6,7 +6,7 @@ from pydantic import BaseModel
 class GoalBase(BaseModel):
     name: str
     description: str
-    deadline_day: datetime.datetime
+    deadline_day: datetime.date
 
 
 class GoalCreate(GoalBase):
@@ -15,8 +15,8 @@ class GoalCreate(GoalBase):
 
 class Goal(GoalBase):
     id: int
-    created_at: datetime.datetime
+    created_at: datetime.date
 
 
 class GoalUpdate(GoalBase):
-    completed_at: datetime.datetime | None = None
+    completed_at: datetime.date | None = None
