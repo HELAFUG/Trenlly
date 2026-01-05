@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 class Person(Base):
     email: Mapped[str] = mapped_column(index=True, unique=True)
     name: Mapped[str]
-    last_name: Mapped[str]
+    last_name: Mapped[Optional[str]]
     age: Mapped[int]
     goals: Mapped[list["Goal"]] = relationship(back_populates="person")
     trainings: Mapped[list["Training"]] = relationship(back_populates="person")

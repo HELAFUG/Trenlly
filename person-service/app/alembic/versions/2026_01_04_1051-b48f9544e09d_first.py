@@ -8,9 +8,8 @@ Create Date: 2026-01-04 10:51:17.016458
 
 from typing import Sequence, Union
 
-from alembic import op
 import sqlalchemy as sa
-
+from alembic import op
 
 # revision identifiers, used by Alembic.
 revision: str = "b48f9544e09d"
@@ -26,14 +25,12 @@ def upgrade() -> None:
         "persons",
         sa.Column("email", sa.String(), nullable=False),
         sa.Column("name", sa.String(), nullable=False),
-        sa.Column("last_name", sa.String(), nullable=False),
+        sa.Column("last_name", sa.String(), nullable=True),
         sa.Column("age", sa.Integer(), nullable=False),
         sa.Column("id", sa.Integer(), nullable=False),
         sa.PrimaryKeyConstraint("id", name=op.f("pk_persons")),
     )
-    op.create_index(
-        op.f("ix_persons_email"), "persons", ["email"], unique=True
-    )
+    op.create_index(op.f("ix_persons_email"), "persons", ["email"], unique=True)
     op.create_index(op.f("ix_persons_id"), "persons", ["id"], unique=False)
     op.create_table(
         "goals",
@@ -50,9 +47,7 @@ def upgrade() -> None:
         ),
         sa.PrimaryKeyConstraint("id", name=op.f("pk_goals")),
     )
-    op.create_index(
-        op.f("ix_goals_description"), "goals", ["description"], unique=True
-    )
+    op.create_index(op.f("ix_goals_description"), "goals", ["description"], unique=True)
     op.create_index(op.f("ix_goals_id"), "goals", ["id"], unique=False)
     op.create_table(
         "trainings",

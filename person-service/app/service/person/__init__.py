@@ -1,2 +1,2 @@
-__all__ = ["create_person_service"]
-from .service import create_person_service
+__all__ = ["create_person_service", "get_person_service"]
+from .service import create_person_service, get_person_service

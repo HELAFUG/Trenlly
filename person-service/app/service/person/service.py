@@ -3,7 +3,7 @@ from typing import Optional
 from core.models import Person
 from core.schemas.person import PersonCreate
 from fastapi import HTTPException
-from repository.person import create_person
+from repository.person import create_person, get_person
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from service.external.auth_service import proxy_auth_login
@@ -24,3 +24,11 @@ async def create_person_service(
         return new_person
 
     raise HTTPException(status_code=400, detail="Bad login credentials")
+
+
+async def get_person_service(session: AsyncSession, email: str) -> Optional[Person]:
+    person = await get_person(session, email)
+    if person:
+        return person
+
+    raise HTTPException(status_code=404, detail="Person not found")
