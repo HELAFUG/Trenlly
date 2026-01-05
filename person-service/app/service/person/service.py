@@ -20,8 +20,10 @@ async def create_person_service(
             last_name=person_data.last_name,
             age=person_data.age,
         )
-        await create_person(session, new_person)
-        return new_person
+        person = await create_person(session, new_person)
+        if not person:
+            raise HTTPException(status_code=500, detail="Failed to create person")
+        return person
 
     raise HTTPException(status_code=400, detail="Bad login credentials")
 
