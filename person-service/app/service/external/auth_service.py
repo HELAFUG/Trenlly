@@ -22,7 +22,6 @@ async def proxy_auth_login(person: PersonCreate) -> Optional[dict]:
                 "Accept": "application/json",
             },
         ) as response:
-            response.raise_for_status()
             if response.status == 200:
                 return await response.json()
 
