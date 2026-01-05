@@ -22,7 +22,9 @@ async def create_person_service(
         )
         person = await create_person(session, new_person)
         if not person:
-            raise HTTPException(status_code=500, detail="Failed to create person")
+            raise HTTPException(
+                status_code=500, detail=f"person {person_data.email} is already exist"
+            )
         return person
 
     raise HTTPException(status_code=400, detail="Bad login credentials")
