@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 person_router = APIRouter(prefix=settings.api.person_prefix)
 
 
-@person_router.post("/", response_model=Person)
+@person_router.post("/", response_model=Person, tags=["Person"])
 async def create_person(
     person: Annotated[PersonCreate, Depends()],
     session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
