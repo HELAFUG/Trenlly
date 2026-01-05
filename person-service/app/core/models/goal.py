@@ -15,7 +15,8 @@ class Goal(Base):
         ForeignKey("persons.id", ondelete="CASCADE"), nullable=False
     )
     person: Mapped["Person"] = relationship(back_populates="goals")
-    description: Mapped[str] = mapped_column(index=True, unique=True)
+    name: Mapped[str] = mapped_column(index=True)
+    description: Mapped[str]
     created_at: Mapped[datetime.datetime] = mapped_column(
         default=datetime.datetime.utcnow()
     )
