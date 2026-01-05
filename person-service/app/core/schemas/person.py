@@ -11,9 +11,9 @@ class PersonBase(BaseModel):
 
 class PersonCreate(PersonBase):
     password: str
-    last_name: Optional[str]
+    last_name: Optional[str] = None
 
 
 class Person(PersonBase):
     id: int
-    last_name: Optional[str]
+    last_name: Optional[str] = None
