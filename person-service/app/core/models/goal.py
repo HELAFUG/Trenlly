@@ -17,6 +17,7 @@ class Goal(Base):
     person: Mapped["Person"] = relationship(back_populates="goals")
     name: Mapped[str] = mapped_column(index=True)
     description: Mapped[str]
+    deadline_day: Mapped[datetime.date]
     created_at: Mapped[datetime.datetime] = mapped_column(
         default=datetime.datetime.utcnow()
     )
