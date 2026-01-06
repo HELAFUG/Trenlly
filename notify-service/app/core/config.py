@@ -13,13 +13,18 @@ class AuthTopics(BaseModel):
 
 
 class TrainingTopics(BaseModel):
-    few_trainings: str = "few_trainigs"
+    pass
+
+
+class GoalTopics(BaseModel):
+    overdue: str = "overdue_goals"
 
 
 class BrokerConfig(BaseModel):
     bootstrap_servers: str = "localhost:9092"
     auth_topic: AuthTopics = AuthTopics()
     training_topic: TrainingTopics = TrainingTopics()
+    goal_topic: GoalTopics = GoalTopics()
 
 
 class AdminConfig(BaseModel):
