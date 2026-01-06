@@ -36,10 +36,13 @@ class LoggingConfig(BaseModel):
     datefmt: str = "%Y-%m-%d %H:%M:%S"
 
 
+class BrokerTopics(BaseModel):
+    goal_overdue_topic: str = "goal_overdue"
+
+
 class FastStreamBrokerConfig(BaseModel):
     bootstrap_servers: str = "localhost:9092"
-    check_user_exists_input_topic: str = "check_user_exists"
-    check_user_exists_output_topic: str = "check_user_exists_response"
+    topics: BrokerTopics = BrokerTopics()
 
 
 class AuthServiceConfig(BaseModel):
