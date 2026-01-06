@@ -13,7 +13,7 @@ class AuthTopics(BaseModel):
 
 
 class TrainingTopics(BaseModel):
-    few_trainigs: str = "few_trainigs"
+    few_trainings: str = "few_trainigs"
 
 
 class BrokerConfig(BaseModel):

@@ -6,7 +6,9 @@ auth_router = KafkaRouter()
 
 
 @auth_router.subscriber(
-    settings.broker.auth_topic.after_register, auto_offset_reset="earliest"
+    settings.broker.auth_topic.after_register,
+    auto_offset_reset="earliest",
+    group_id="after_register_consumers",
 )
 async def after_register(message: dict):
     email = message.get("email")
@@ -14,8 +16,11 @@ async def after_register(message: dict):
 
 
 @auth_router.subscriber(
-    settings.broker.auth_topic.after_login, auto_offset_reset="earliest"
+    settings.broker.auth_topic.after_login,
+    auto_offset_reset="earliest",
+    group_id="after_login_consumers",
 )
 async def after_login(message: dict):
     email = message.get("email")
+
     await send_login_email(email)
