@@ -35,3 +35,8 @@ async def get_goals(session: AsyncSession, person_email: str) -> Optional[list[G
 async def get_goal(session: AsyncSession, goal_id: int) -> Optional[Goal]:
     goal = await session.execute(select(Goal).where(Goal.id == goal_id))
     return goal.scalars().first()
+
+
+async def get_goals_for_analysis(session: AsyncSession) -> Optional[list[Goal]]:
+    goals = await session.execute(select(Goal).order_by(Goal.deadline_day))
+    return list(goals.scalars().all())
