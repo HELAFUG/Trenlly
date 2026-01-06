@@ -7,10 +7,19 @@ from pydantic_settings import BaseSettings
 load_dotenv()
 
 
+class AuthTopics(BaseModel):
+    after_register: str = "after_registration"
+    after_login: str = "after_login"
+
+
+class TrainingTopics(BaseModel):
+    few_trainigs: str = "few_trainigs"
+
+
 class BrokerConfig(BaseModel):
     bootstrap_servers: str = "localhost:9092"
-    after_register_topic: str = "after_registration"
-    after_login_topic: str = "after_login"
+    auth_topic: AuthTopics = AuthTopics()
+    training_topic: TrainingTopics = TrainingTopics()
 
 
 class AdminConfig(BaseModel):
