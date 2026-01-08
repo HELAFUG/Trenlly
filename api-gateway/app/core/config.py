@@ -17,6 +17,10 @@ class SRVConfig(BaseModel):
     host: str = "localhost"
 
 
+class PersonService(BaseModel):
+    url: str = getenv("PERSON_SERVICE_URL", "http://localhost:8030/")
+
+
 class UserService(BaseModel):
     url: str = getenv("USER_SERVICE_URL", "http://localhost:8010/")
 
@@ -31,6 +35,7 @@ class UserService(BaseModel):
 
 class ExternalServicesConfig(BaseModel):
     user_service: UserService = UserService()
+    person_service: PersonService = PersonService()
 
 
 class Settings(BaseSettings):
