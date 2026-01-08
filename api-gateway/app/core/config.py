@@ -22,7 +22,7 @@ class PersonService(BaseModel):
 
     @property
     def create_person_url(self) -> str:
-        return f"{self.url}/api/person"
+        return f"{self.url}/api/person/"
 
     @property
     def get_person_url(self) -> str:
