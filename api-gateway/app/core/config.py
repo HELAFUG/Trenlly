@@ -11,6 +11,10 @@ class APIGatewayConfig(BaseModel):
     prefix: str = "/trenlly"
     auth: str = "/auth"
 
+    @property
+    def token_url(self) -> str:
+        return f"{self.prefix}{self.auth}/login"
+
 
 class SRVConfig(BaseModel):
     port: int = 8000
@@ -27,6 +31,7 @@ class PersonService(BaseModel):
     @property
     def get_person_url(self) -> str:
         return f"{self.url}api/person/"
+
 
 class UserService(BaseModel):
     url: str = getenv("USER_SERVICE_URL", "http://localhost:8010/")
