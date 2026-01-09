@@ -18,26 +18,26 @@ class SRVConfig(BaseModel):
 
 
 class PersonService(BaseModel):
-    url: str = getenv("PERSON_SERVICE_URL", "http://localhost:8030")
+    url: str = getenv("PERSON_SERVICE_URL", "http://localhost:8030/")
 
     @property
     def create_person_url(self) -> str:
-        return f"{self.url}/api/person/"
+        return f"{self.url}api/person/"
 
     @property
     def get_person_url(self) -> str:
-        return f"{self.url}/api/person/"
+        return f"{self.url}api/person/"
 
 class UserService(BaseModel):
-    url: str = getenv("USER_SERVICE_URL", "http://localhost:8010")
+    url: str = getenv("USER_SERVICE_URL", "http://localhost:8010/")
 
     @property
     def register_url(self) -> str:
-        return f"{self.url}/api/auth/register"
+        return f"{self.url}api/auth/register"
 
     @property
     def login_url(self) -> str:
-        return f"{self.url}/api/auth/login"
+        return f"{self.url}api/auth/login"
 
 
 class ExternalServicesConfig(BaseModel):
