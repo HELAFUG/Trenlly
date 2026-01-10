@@ -39,6 +39,11 @@ class AccessToken(BaseModel):
     lifetime: int = 3600
 
 
+class JWTToken(BaseModel):
+    secret: str = getenv("JWT_TOKEN_SECRET", "secret")
+    lifetime: int = 3600
+
+
 class BrokerConfig(BaseModel):
     bootstrap_servers: str = "localhost:9092"
     after_register_topic: str = "after_registration"
@@ -51,6 +56,7 @@ class Settings(BaseSettings):
     srv: SRVConfig = SRVConfig()
     access_token: AccessToken = AccessToken()
     broker: BrokerConfig = BrokerConfig()
+    jwt_token: JWTToken = JWTToken()
 
 
 settings = Settings()
