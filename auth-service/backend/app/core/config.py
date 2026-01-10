@@ -41,6 +41,7 @@ class AccessToken(BaseModel):
 
 class JWTToken(BaseModel):
     secret: str = getenv("JWT_TOKEN_SECRET", "secret")
+    algorithm: str = "HS256"
     lifetime: int = 3600
 
 
