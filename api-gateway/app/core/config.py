@@ -50,10 +50,17 @@ class ExternalServicesConfig(BaseModel):
     person_service: PersonService = PersonService()
 
 
+class JWTSettings(BaseModel):
+    secret_key: str = getenv("JWT_SECRET_KEY", "secret")
+    algorithm: str = "HS256"
+    access_token_expire_minutes: int = 60
+
+
 class Settings(BaseSettings):
     external_services: ExternalServicesConfig = ExternalServicesConfig()
     api_gateway: APIGatewayConfig = APIGatewayConfig()
     srv: SRVConfig = SRVConfig()
+    jwt: JWTSettings = JWTSettings()
 
 
 settings = Settings()
