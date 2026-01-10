@@ -1,9 +1,13 @@
 import jwt
 from core.config import settings
 from fastapi import HTTPException
-async def decode_token(token: str) -> dict:
+
+
+def decode_token(token: str) -> dict:
     try:
-        return jwt.decode(token, settings.jwt.secret_key, algorithms=[settings.jwt.algorithm])
+        return jwt.decode(
+            token, settings.jwt.secret_key, algorithms=[settings.jwt.algorithm]
+        )
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token has expired")
     except jwt.InvalidTokenError:
